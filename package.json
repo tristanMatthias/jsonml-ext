@@ -1,6 +1,6 @@
 {
   "name": "jsonml-ext",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JSONML to HTML with extended functionality",
   "main": "jsonml-ext.js",
   "repository": "https://github.com/tristanMatthias/jsonml-ext.git",
