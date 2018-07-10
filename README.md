@@ -1,3 +1,4 @@
+![Banner](banner.svg "Banner")
 # JSON Markup Language - Extended
 
 [![npm](https://img.shields.io/npm/v/jsonml-ext.svg)](http://npmjs.com/package/jsonml-ext)
@@ -21,79 +22,49 @@ This will install the package into your project.
 
 
 ## Usage & options
+Read the [JSONML website](http://www.jsonml.org/) for more information on JSONML.
+
 Once installed, you can import and render JSON ML arrays into HTML strings:
 ```js
-const compile = require('jsonml-ext');
+const {compile} = require('jsonml-ext');
 
 let html;
 html = compile(['div']);
 // <div></div>
-html = compile(['button', {class: 'red', disabled: 'disabled'}]);
-// <div class="some-class" disabled></div>
-html = compile(['div', [['a', { href: 1, b: 2 }]]]));
+
+html = compile(['button', {class: 'red', disabled: true}]);
+// <button class="red" disabled="true"></button>
+
+html = compile(['div', [['a', {target: '_blank' }]]]);
+// <div><a href="" target="_blank"></a></div>
 ```
 
-console.log(compile(['test-ok', [['a', { href: 1, b: 2 }]]]));
-For a list of complete options, run `sass-render --help`
+**The JML Item**
+The JML item passed in contains up to 3 items:
+1. The Emmet abbreviation to be expanded. EG: `a#clickme[target="_blank"]`
+2. The attributes as a JSON object, OR a nested array of JML items
+3. Array of JML items. This item can only be passed if the attributes in item 2 was passed
 
-**Simple usage**
-Renders a `./src/components/button-css.js` file
-```
-sass-render ./src/components/button.scss
-```
-
-**Compile directory**
-Renders all scss files in recursively in directory with a custom template
-```
-sass-render ./src/**/*.scss -t css-template.js
-```
-
-**Watching**
-Use `-w` to watch for changes
-```
-sass-render ./src/**/*.scss -w
-```
-Files will be outputted as `[name]-css.js`. EG: If file is `button.scss`, outputted file will be `button-css.js`.
-
-**Custom template**
-Use `-t` to specify the file you'd like to use as a template. `sass-render` will replace `<% content %>` in the file.
-```
-sass-render ./src/components/button-css.js -t css-template.js
-```
-
-**Custom suffix**
-Files will be outputted as `[name]-css.js`. EG: If file is `button.scss`, outputted file will be `button-css.js`. This can be changed with the `--suffix` option.
-
-
-## Importing
-Once your SASS files are converted into js/ts files, you can use them inside a library like `lit-element`:
-
+EG:
+*Simple usage*
 ```js
-import {html, LitElement} from '@polymer/lit-element';
-import CSS from './button-css.js';
-
-export default class Button extends LitElement {
-    _render() {
-        return html`
-            ${CSS}
-            <button><slot>Submit</slot></button>
-        `;
-    }
-}
-window.customElements.define('my-button', Button);
+// Pass in only the first item
+compile(['div#test']) // => '<div id="test"></div>'
 ```
-
-
-## Custom template
-By default, the template is:
+*Attribute usage*
 ```js
-import {html} from '@polymer/lit-element';
-export const style = html`<style><% content %></style>`;
+// Pass in the first item and it's attributes
+compile(['div[class="red"]', {class: "override"}]) // => '<div class="override"></div>'
 ```
-
-This can be overridden with the `-t` option to your own file. EG:
+*Nested variation 1*
 ```js
-module.exports.CSS = '<% content %>';
+// Pass in the first item and the nested items as the SECOND item
+compile(['div[class="red"]', ['span']]) // => '<div class="red"><span></span></div>'
+```
+*Nested variation 2*
+```js
+// Pass in the first item, it's attributes, and the nested items as the THIRD item
+compile(['div[class="red"]', {class: "override"}, ['span']]) // => '<div class="override"><span></span></div>'
 ```
 
 
@@ -102,7 +73,6 @@ All pull requests and contributions are most welcome. Let's make the internet be
 
 
 ## Moving forward / TODO
-- [x] Watch command
 - [x] Add tests
 
 
@@ -111,5 +81,4 @@ If you find a bug, please file an issue on the issue tracker on GitHub.
 
 
 ## Credits
-The concept of `jsonml-ext` was originally created by Google.
 This project is built and maintained by [Tristan Matthias](https://github.com/tristanMatthias).

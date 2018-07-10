@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 2880 1030" style="enable-background:new 0 0 2880 1030;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:#FFFFFF;}
+	.st2{fill:#FA709A;}
+	.st3{font-family:'SFMono-Medium';}
+	.st4{font-size:43.4699px;}
+	.st5{fill:#FCB830;}
+	.st6{fill:url(#SVGID_2_);}
+	.st7{font-family:'SFMono-Heavy';}
+	.st8{font-size:60px;}
+	.st9{opacity:0.8;}
+	.st10{font-family:'SFMono-Light';}
+	.st11{font-size:88.7942px;}
+</style>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="136.6087" y1="-215.689" x2="2745.3274" y2="1246.7744">
+	<stop  offset="1.238567e-03" style="stop-color:#FA709A"/>
+	<stop  offset="1" style="stop-color:#FEE140"/>
+</linearGradient>
+<rect y="0" class="st0" width="2880" height="1030"/>
+<g>
+	<path class="st1" d="M1390,876H183c-16.6,0-30-13.4-30-30V471c0-16.6,13.4-30,30-30h1207c16.6,0,30,13.4,30,30v375
+		C1420,862.6,1406.6,876,1390,876z"/>
+	<text transform="matrix(1 0 0 1 213 615.4944)"><tspan x="0" y="0" class="st2 st3 st4">compile([</tspan><tspan x="0" y="62.9" class="st2 st3 st4">    &apos;a[class=&quot;active&quot;]&apos;, </tspan><tspan x="0" y="125.9" class="st2 st3 st4">    [&apos;i.icon&apos;, [&apos;span&apos;, {class: &apos;bold&apos;}]]</tspan><tspan x="0" y="188.8" class="st2 st3 st4">]);</tspan></text>
+	<path class="st1" d="M2697,876H1490c-16.6,0-30-13.4-30-30V471c0-16.6,13.4-30,30-30h1207c16.6,0,30,13.4,30,30v375
+		C2727,862.6,2713.6,876,2697,876z"/>
+	<text transform="matrix(1 0 0 1 1559.9995 615.4944)"><tspan x="0" y="0" class="st5 st3 st4">&lt;a href=&quot;&quot; class=&quot;active&quot;&gt;</tspan><tspan x="0" y="62.9" class="st5 st3 st4">    &lt;i class=&quot;icon&quot;&gt;&lt;/i&gt;</tspan><tspan x="0" y="125.9" class="st5 st3 st4">    &lt;span class=&quot;bold&quot;&gt;&lt;/span&gt;</tspan><tspan x="0" y="188.8" class="st5 st3 st4">&lt;/a&gt;</tspan></text>
+	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="1345" y1="659" x2="1535" y2="659">
+		<stop  offset="1.238567e-03" style="stop-color:#FA709A"/>
+		<stop  offset="1" style="stop-color:#FEE140"/>
+	</linearGradient>
+	<circle class="st6" cx="1440" cy="659" r="95"/>
+	<path class="st1" d="M1424.4,629.9c-1.2,1.2-1.2,3,0,4.2l24.9,24.9l-24.9,24.9c-1.2,1.2-1.2,3,0,4.2c1.2,1.2,3,1.2,4.2,0l27-27
+		c0.6-0.6,0.9-1.5,0.9-2.1s-0.3-1.5-0.9-2.1l-27-27C1427.4,628.7,1425.6,628.7,1424.4,629.9z"/>
+	<g>
+		<text transform="matrix(1 0 0 1 675.2305 525.4951)" class="st2 st7 st8">JsonML</text>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 2019.3203 525.4951)" class="st5 st7 st8">HTML</text>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 891.1064 193.3328)" class="st9"><tspan x="0" y="0" class="st1 st10 st11">JSON Markup Language</tspan><tspan x="329.3" y="128.6" class="st1 st7 st11">Extended</tspan></text>
+</svg>
