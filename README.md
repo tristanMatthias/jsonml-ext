@@ -1,4 +1,4 @@
-![Banner](banner.svg "Banner")
+![Banner](banner.png "Banner")
 # JSON Markup Language - Extended
 
 [![npm](https://img.shields.io/npm/v/jsonml-ext.svg)](http://npmjs.com/package/jsonml-ext)
