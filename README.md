@@ -1,4 +1,4 @@
-![Banner](banner.png "Banner")
+![Banner](banner.png 'Banner')
 # JSON Markup Language - Extended
 
 [![npm](https://img.shields.io/npm/v/jsonml-ext.svg)](http://npmjs.com/package/jsonml-ext)
@@ -28,20 +28,19 @@ Once installed, you can import and render JSON ML arrays into HTML strings:
 ```js
 const {compile} = require('jsonml-ext');
 
-let html;
-html = compile(['div']);
+compile(['div']);
 // <div></div>
 
-html = compile(['button', {class: 'red', disabled: true}]);
-// <button class="red" disabled="true"></button>
+compile(['button', {class: 'red', disabled: true}]);
+// <button class="red" disabled='true'></button>
 
-html = compile(['div', [['a', {target: '_blank' }]]]);
-// <div><a href="" target="_blank"></a></div>
+compile(['div', ['a', {target: '_blank' }]]);
+// <div><a href=' target='_blank'></a></div>
 ```
 
 **The JML Item**
 The JML item passed in contains up to 3 items:
-1. The Emmet abbreviation to be expanded. EG: `a#clickme[target="_blank"]`
+1. The Emmet abbreviation to be expanded. EG: `a#clickme[target='_blank']`
 2. The attributes as a JSON object, OR a nested array of JML items
 3. Array of JML items. This item can only be passed if the attributes in item 2 was passed
 
@@ -49,22 +48,40 @@ EG:
 *Simple usage*
 ```js
 // Pass in only the first item
-compile(['div#test']) // => '<div id="test"></div>'
+compile(['div#test'])
+// '<div id='test'></div>'
+```
+*Text content usage*
+```js
+// Pass in only the first item
+compile(['div#test', 'Lorem Ipsum'])
+// '<div id='test'>Lorem Ipsum</div>'
 ```
 *Attribute usage*
 ```js
 // Pass in the first item and it's attributes
-compile(['div[class="red"]', {class: "override"}]) // => '<div class="override"></div>'
+compile(['div[class="red"]', {class: 'override'}, 'Lorem Ipsum'])
+// '<div class="override">Lorem Ipsum</div>'
 ```
 *Nested variation 1*
 ```js
-// Pass in the first item and the nested items as the SECOND item
-compile(['div[class="red"]', ['span']]) // => '<div class="red"><span></span></div>'
+// Omit the attributes
+compile(['div[class="red"]', ['span', 'Nested content']])
+// '<div class="red"><span>Nested content</span></div>'
 ```
 *Nested variation 2*
 ```js
-// Pass in the first item, it's attributes, and the nested items as the THIRD item
-compile(['div[class="red"]', {class: "override"}, ['span']]) // => '<div class="override"><span></span></div>'
+// Pass in the first item, and it's attributes as the SECOND item. The remaining
+// items are just JMLItems
+compile(['div[class="red"]', {class: 'override'}, ['span']])
+// '<div class="override"><span></span></div>'
+```
+*Siblings*
+```js
+// You can pass as many JMLItems at the end of the array, and they will be added
+// as siblings
+compile(['div[class="red"]', ['span.sibling1'], 'text content', ['span.sibling2']])
+// '<div class="override"><span class="sibling1"></span>text content<span class="sibling2"></span></div>'
 ```
 
 

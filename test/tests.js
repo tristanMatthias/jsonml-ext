@@ -13,15 +13,23 @@ describe('JSON Markup Language - Extended', function () {
             compile(['div'])
                 .should.equal('<div></div>')
         });
+        it('should return a div with "Hello, World!"', function () {
+            compile(['div', 'Hello, World!'])
+                .should.equal('<div>Hello, World!</div>')
+        });
         it('should return a div with class="red"', function () {
             compile(['div', {class: 'red'}])
                 .should.equal('<div class="red"></div>')
+        });
+        it('should return a div with class="red", and "Hello, World!"', function () {
+            compile(['div', {class: 'red'}, "Hello, World!"])
+                .should.equal('<div class="red">Hello, World!</div>')
         });
         it('should throw error "Invalid Format"', function () {
             expect((() => compile(false))).to.throw('Invalid');
         });
         it('should throw error "Invalid Format"', function () {
-            expect((() => compile(['a', false]))).to.throw('Invalid format for second element');
+            expect((() => compile(['a', false]))).to.throw('Invalid format for element');
         });
 
     });
@@ -59,8 +67,8 @@ describe('JSON Markup Language - Extended', function () {
                 .should.equal('<div class="red"><span></span></div>')
         });
         it('should return a 3 nested divs', function () {
-            compile(['div.outer', [['div.middle', [['div.inner']]]]])
-                .should.equal('<div class="outer"><div class="middle"><div class="inner"></div></div></div>')
+            compile(['div.outer', ['div.middle', ['div.inner', 'Nested content']]])
+                .should.equal('<div class="outer"><div class="middle"><div class="inner">Nested content</div></div></div>')
         });
     });
 });

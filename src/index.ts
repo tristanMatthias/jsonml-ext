@@ -22,18 +22,30 @@ export function compile(item: JMLItem) {
         let attributes = {};
         let children: string[] = [];
 
-        // If there is a second element...
-        if (item[1] !== undefined) {
+        const appendChildren = (ele: string | JMLItem) => {
+            // If ele is a single string, add it as text content
+            if (typeof ele === 'string') children.push(ele);
 
-            // If the second element is a nested list...
-            if (item[1] instanceof Array) {
-                let arr = item[1] as JMLItem[];
-                children = arr.map(compile);
-            } else if (item[1] instanceof Object) attributes = item[1];
-            else throw new Error("Invalid format for second element");
+            // If the ele is a JMLItem
+            else if (ele instanceof Array) children.push(compile(ele))
+            else throw new Error("Invalid format for element");
         }
 
-        if (item[2]) children = (item[2] as JMLItem[]).map(compile);
+        const rest = item.slice(1).reverse();
+
+
+        if (rest.length) {
+            let cur = rest.pop();
+            // First item is attributes...
+            if (cur.constructor === {}.constructor) attributes = cur;
+            else appendChildren(cur as string | JMLItem);
+
+
+            while (cur = rest.pop()) {
+                appendChildren(cur as string | JMLItem);
+            }
+
+        }
 
         if (attributes) {
             attributes = `[${

@@ -6077,21 +6077,29 @@ function compile(item) {
     if (item instanceof Array) {
         var ele = item[0];
         var attributes = {};
-        var children = [];
-        // If there is a second element...
-        if (item[1] !== undefined) {
-            // If the second element is a nested list...
-            if (item[1] instanceof Array) {
-                var arr = item[1];
-                children = arr.map(compile);
-            }
-            else if (item[1] instanceof Object)
-                attributes = item[1];
+        var children_1 = [];
+        var appendChildren = function (ele) {
+            // If ele is a single string, add it as text content
+            if (typeof ele === 'string')
+                children_1.push(ele);
+            // If the ele is a JMLItem
+            else if (ele instanceof Array)
+                children_1.push(compile(ele));
             else
-                throw new Error("Invalid format for second element");
+                throw new Error("Invalid format for element");
+        };
+        var rest = item.slice(1).reverse();
+        if (rest.length) {
+            var cur = rest.pop();
+            // First item is attributes...
+            if (cur.constructor === {}.constructor)
+                attributes = cur;
+            else
+                appendChildren(cur);
+            while (cur = rest.pop()) {
+                appendChildren(cur);
+            }
         }
-        if (item[2])
-            children = item[2].map(compile);
         if (attributes) {
             attributes = "[" + Object.entries(attributes)
                 .map(function (_a) {
@@ -6101,8 +6109,8 @@ function compile(item) {
                 .join(' ') + "]";
         }
         var html = expand_abbreviation_1.expand(ele + attributes);
-        if (children.length) {
-            html = html.replace('</', children.join('') + "</");
+        if (children_1.length) {
+            html = html.replace('</', children_1.join('') + "</");
         }
         return html;
     }
